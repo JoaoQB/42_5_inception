@@ -37,6 +37,10 @@ docker run --name <container_name> -d <image_name>:<tag>
 ## Run a Docker container mapping ports and mounting volumes
 docker run --name <container_name> -d -p <host_port>:<container_port> -v <host_path>:<container_path> <image_name>:<tag>
 
+## Run a Bash Terminal Inside Container
+docker exec -it <container_name> bash
+	example: docker exec -it nginx bash
+
 # Docker Compose Commands
 
 ## List Docker Compose containers in current project
@@ -95,3 +99,12 @@ docker volume prune
 ## List Docker networks (Docker Compose uses its own)
 docker network ls
 
+# NGINX
+
+## Test Network Access (Must Work)
+curl -I -v --tlsv1.2 --tls-max 1.2 https://jqueijo-.42.fr
+curl -I -v --tlsv1.3 --tls-max 1.3 https://jqueijo-.42.fr
+
+## Test Network Access (Must Fail)
+curl -I -v --tlsv1 --tls-max 1.0 https://jqueijo-.42.fr
+curl -I -v --tlsv1.1 --tls-max 1.1 https://jqueijo-.42.fr
