@@ -6,7 +6,7 @@
 #    By: jqueijo- <jqueijo-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/29 11:10:42 by jqueijo-          #+#    #+#              #
-#    Updated: 2025/07/30 13:39:43 by jqueijo-         ###   ########.fr        #
+#    Updated: 2025/07/30 18:03:38 by jqueijo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ all: up
 up:
 	mkdir -p /home/jqueijo-/data
 	mkdir -p /home/jqueijo-/data/wordpress
+	mkdir -p ./inception/secrets
 	docker compose -f ./srcs/docker-compose.yml up -d
 
 down:
