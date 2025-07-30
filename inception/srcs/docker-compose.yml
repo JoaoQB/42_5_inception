@@ -1,17 +1,46 @@
 services:
   nginx:
-    build: ./requirements/nginx
+    depends_on:
+      - wordpress
+    build:
+      context: ./requirements/nginx
+      args:
+        NGINX_PORT: ${NGINX_PORT}
     container_name: nginx
     image: nginx:42
     restart: always
     ports:
-      - "443:443"
+      - "${NGINX_PORT}:443"
     volumes:
       - ./requirements/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+      - wordpress_data:/var/www/html
     networks:
       - inception
+    env_file: .env
+
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      args:
+        PHP_FPM_PORT: ${PHP_FPM_PORT}
+    container_name: wordpress
+    image: wordpress:42
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    env_file: .env
 
 networks:
   inception:
     driver: bridge
     name: inception
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/jqueijo-/data/wordpress

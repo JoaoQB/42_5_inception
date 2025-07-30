@@ -22,13 +22,14 @@ RUN openssl req -x509 \
   -nodes \
   -subj "/C=PT/ST=Lisboa/L=Lisboa/O=42/OU=student/CN=jqueijo-"
 
-#Remove default site to prevent serving unwanted content
+# Remove default site to prevent serving unwanted content
 RUN rm /etc/nginx/sites-enabled/default
 
 # Remove weak protocols from global nginx.conf
 RUN sed -i 's/ssl_protocols .*;/ssl_protocols TLSv1.2 TLSv1.3;/' /etc/nginx/nginx.conf
 
+ARG NGINX_PORT
 # Document that the container listens on HTTPS port 443
-EXPOSE 443
+EXPOSE ${NGINX_PORT}
 
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,3 +1,8 @@
+# General
+
+## Good Readme
+https://github.com/vbachele/Inception
+
 # Docker
 
 ## Dockerfile
@@ -42,8 +47,18 @@ https://www.digitalocean.com/community/tutorials/understanding-and-implementing-
 ## What Is PHP
 https://www.w3schools.com/php/php_intro.asp
 
-## PHP-FPM NGINX Config
+## PHP-FPM NGINX Info and Config
 https://www.digitalocean.com/community/tutorials/php-fpm-nginx
 
 ## PHP-FPM Configuration
-https://myjeeva.com/php-fpm-configuration-101.html
+https://marc.it/dockerize-application-with-nginx-and-php8/
+
+## Wordpress CLI
+https://www.dreamhost.com/blog/guide-to-wp-cli/#:~:text=The%20WP%2DCLI%20is%20a,faster%20using%20the%20WP%2DCLI.
+
+## Wordpress CLI Config
+https://www.cloudways.com/blog/wp-cli-commands/
+
+# MariaDB
+
+## Installing and Using MariaDB via Docker
