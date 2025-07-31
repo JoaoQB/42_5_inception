@@ -12,13 +12,13 @@ services:
     ports:
       - "${NGINX_PORT}:443"
     volumes:
-      - ./requirements/nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
       - wordpress_data:/var/www/html
     networks:
       - inception
     env_file: .env
-
   wordpress:
+    depends_on:
+      - mariadb
     build:
       context: ./requirements/wordpress
       args:
@@ -31,7 +31,30 @@ services:
     networks:
       - inception
     env_file: .env
-
+    secrets:
+      - db_name
+      - db_user
+      - db_password
+      - wp_admin_user
+      - wp_admin_password
+      - wp_admin_email
+      - wp_user
+      - wp_user_password
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    container_name: mariadb
+    image: mariadb:42
+    restart: always
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+    secrets:
+      - db_name
+      - db_user
+      - db_password
+      - db_root_password
 networks:
   inception:
     driver: bridge
@@ -44,3 +67,29 @@ volumes:
       o: bind
       type: none
       device: /home/jqueijo-/data/wordpress
+  mariadb_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/jqueijo-/data/mariadb
+
+secrets:
+  db_name:
+    file: ../secrets/dbName.txt
+  db_user:
+    file: ../secrets/dbUser.txt
+  db_password:
+    file: ../secrets/dbPassword.txt
+  db_root_password:
+    file: ../secrets/dbRootPassword.txt
+  wp_admin_user:
+    file: ../secrets/wpAdminUser.txt
+  wp_admin_password:
+    file: ../secrets/wpAdminPassword.txt
+  wp_admin_email:
+    file: ../secrets/wpAdminEmail.txt
+  wp_user:
+    file: ../secrets/wpUser.txt
+  wp_user_password:
+    file: ../secrets/wpUserPassword.txt

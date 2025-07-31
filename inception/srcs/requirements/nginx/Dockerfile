@@ -22,6 +22,8 @@ RUN openssl req -x509 \
   -nodes \
   -subj "/C=PT/ST=Lisboa/L=Lisboa/O=42/OU=student/CN=jqueijo-"
 
+COPY conf/default.conf /etc/nginx/conf.d/default.conf
+
 # Remove default site to prevent serving unwanted content
 RUN rm /etc/nginx/sites-enabled/default
 
