@@ -35,6 +35,13 @@ if ! wp core is-installed --allow-root; then
     --user_pass="${WP_USER_PASSWORD}" \
     --allow-root
   wp theme install twentytwentythree --activate --allow-root
+  wp plugin install redis-cache --activate --allow-root
+  wp plugin update --all --allow-root
+  wp config set WP_REDIS_HOST 'redis' --type=constant --allow-root
+  wp config set WP_REDIS_PORT "${REDIS_PORT}" --type=constant --raw --allow-root
+  wp config set WP_CACHE true --type=constant --raw --allow-root
+  wp config set WP_CACHE_KEY_SALT 'inception_wp_' --type=constant --allow-root
+  wp redis enable --allow-root
 fi
 
-php-fpm7.4 -F
+exec php-fpm7.4 -F

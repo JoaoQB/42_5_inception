@@ -61,4 +61,17 @@ https://www.cloudways.com/blog/wp-cli-commands/
 
 # MariaDB
 
-## Installing and Using MariaDB via Docker
+## What is MariaDB
+https://builtin.com/data-science/mariadb
+
+## MariaDB Config
+https://medium.com/@ssterdev/inception-42-project-part-ii-19a06962cf3b
+
+
+# Redis
+
+## What is Redis
+https://www.reddit.com/r/webdev/comments/3kz9bg/eli5_what_is_redis_why_does_it_exist_and_how_does/
+
+## Redis Wordpress Config
+https://wp-rocket.me/wordpress-cache/redis-object-caching/

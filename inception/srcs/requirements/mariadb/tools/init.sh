@@ -28,4 +28,4 @@ EOF
   mysql_install_db
 fi
 
-mysqld
+exec mysqld

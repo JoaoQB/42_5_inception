@@ -2,7 +2,7 @@ FROM debian:11
 
 RUN apt-get update && \
   apt-get upgrade -y && \
-  apt-get install -y php-fpm php-mysqli curl
+  apt-get install -y php-fpm php-mysqli php-redis curl
 
 # Clean cached files to reduce image size
 RUN apt-get clean && \

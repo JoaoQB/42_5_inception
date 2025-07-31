@@ -16,6 +16,7 @@ services:
     networks:
       - inception
     env_file: .env
+
   wordpress:
     depends_on:
       - mariadb
@@ -40,6 +41,7 @@ services:
       - wp_admin_email
       - wp_user
       - wp_user_password
+
   mariadb:
     build:
       context: ./requirements/mariadb
@@ -55,6 +57,29 @@ services:
       - db_user
       - db_password
       - db_root_password
+
+  redis:
+    depends_on:
+      - wordpress
+    build:
+      context: ./requirements/bonus/redis
+    container_name: redis
+    image: redis:42
+    restart: always
+    networks:
+      - inception
+
+  adminer:
+    depends_on:
+      - mariadb
+    build:
+      context: ./requirements/bonus/adminer
+    container_name: adminer
+    image: adminer:42
+    restart: always
+    networks:
+      - inception
+
 networks:
   inception:
     driver: bridge
