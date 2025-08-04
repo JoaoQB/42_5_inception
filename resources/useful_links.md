@@ -75,3 +75,8 @@ https://www.reddit.com/r/webdev/comments/3kz9bg/eli5_what_is_redis_why_does_it_e
 
 ## Redis Wordpress Config
 https://wp-rocket.me/wordpress-cache/redis-object-caching/
+
+# Adminer
+
+## What Is Adminer
+https://kinsta.com/blog/adminer/

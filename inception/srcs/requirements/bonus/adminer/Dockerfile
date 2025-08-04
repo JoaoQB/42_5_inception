@@ -10,7 +10,7 @@ RUN mkdir -p /var/www/html
 
 RUN wget http://www.adminer.org/latest.php -O /var/www/html/index.php
 
-COPY ./conf/www.conf /etc/php/*/fpm/pool.d/www.conf
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 EXPOSE 9000
 
