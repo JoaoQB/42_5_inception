@@ -1,5 +1,6 @@
 # Architechture Flow
 
+```
 [ Internet ]
      |
  [         `Nginx`         ]  <--- Reverse Proxy
@@ -18,3 +19,4 @@
                        +-- directly queries → [ `MariaDB` ]
 
                          [ `Redis` ] ←→ [ `MariaDB` ]
+```
