@@ -43,9 +43,15 @@ start:
 stop:
 	$(DC) stop
 
+status:
+	$(DC) ps -a
+
+logs:
+	$(DC) logs
+
 clean:
 	$(DC) down --volumes --remove-orphans
-# 	docker rmi nginx:42 wordpress:42 mariadb:42
+# 	docker rmi nginx:42 wordpress:42 mariadb:42 redis:42 adminer:42
 	docker rmi $$(docker images -q) || true
 
 fclean: clean
@@ -53,6 +59,6 @@ fclean: clean
 	docker image prune -f
 	docker volume prune -f
 	sudo rm -rf $(DATA_PATH)
-#	sudo rm -rf $(SCR_PATH)
+	sudo rm -rf $(SCR_PATH)
 
 re: fclean new
