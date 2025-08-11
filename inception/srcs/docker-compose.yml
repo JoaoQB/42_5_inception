@@ -80,6 +80,18 @@ services:
     networks:
       - inception
 
+  website:
+    depends_on:
+      - nginx
+    build:
+      context: ./requirements/bonus/website
+    container_name: website
+    image: website:42
+    restart: always
+    networks:
+      - inception
+    env_file: .env
+
 networks:
   inception:
     driver: bridge

@@ -11,7 +11,6 @@ rm -rf /var/lib/apt/lists/*
 # Ensure PHP runtime directory exists
 RUN mkdir -p /run/php
 
-
 ARG PHP_FPM_PORT
 # Configure PHP-FPM to listen o`n TCP port 9000 instead of default Unix socket
 RUN sed -i "s/^listen = .*/listen = ${PHP_FPM_PORT}/" /etc/php/7.4/fpm/pool.d/www.conf
