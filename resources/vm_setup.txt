@@ -3,27 +3,29 @@ How to set up your environment in your vm?
 Edit /etc/hosts to add your server name to the list of host accepted
 	127.0.0.1 login.42.fr
 
+for the ssh you can edit the /etc/ssh/sshd_config file and change the port to 4242
+    find the line with Port 22 and change it to Port 4242
+
 Create a new user named after your login and assign it to the different groups
 
+sudo visudo
 sudo adduser login
 sudo usermod -aG sudo login
 sudo usermod -aG docker login
 sudo usermod -aG vboxsf login (if you use shared folders on your vm)
 
 
-Get the latest version of docker-compose to be able to use docker-compose with a makefile
-
-    Delete previous version
-
-sudo apt-get remove docker-compose
-
-sudo rm -f /usr/local/bin/docker-compose
-
-    Install newest version
-
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Darwin-x86_64" -o /usr/local/bin/docker-compose (version 29.2 at the time of this readme)
-
-sudo chmod +x /usr/local/bin/docker-compose
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install make curl lsb-release ca-certificates apt-transport-https software-properties-common hostsed -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce -y
+sudo apt-get update
+sudo apt-get install docker-compose docker-compose-plugin -y
+sudo apt-get update
+sudo rm -rf /var/lib/apt/lists/*
 
 
 Stop the nginx and mysql service which are set by default on 42 vm
