@@ -14,7 +14,7 @@ sudo usermod -aG sudo login
 sudo usermod -aG docker login
 sudo usermod -aG vboxsf login (if you use shared folders on your vm)
 
-
+sudo apt-get install git wget zsh vim make openbox xinit kitty firefox-esr filezilla -y
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install make curl lsb-release ca-certificates apt-transport-https software-properties-common hostsed -y
