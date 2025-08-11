@@ -3,6 +3,10 @@
 ## Good Readme
 https://github.com/vbachele/Inception
 
+## Set Up VM
+https://github.com/tblaase/inception
+https://github.com/Bakr-1/inceptionVm-guide?tab=readme-ov-file
+
 # Docker
 
 ## Dockerfile
