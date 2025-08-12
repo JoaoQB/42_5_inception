@@ -8,7 +8,7 @@ services:
         NGINX_PORT: ${NGINX_PORT}
     container_name: nginx
     image: nginx:42
-    restart: always
+    restart: unless-stopped
     ports:
       - "${NGINX_PORT}:443"
     volumes:
@@ -26,7 +26,7 @@ services:
         PHP_FPM_PORT: ${PHP_FPM_PORT}
     container_name: wordpress
     image: wordpress:42
-    restart: always
+    restart: unless-stopped
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -47,7 +47,7 @@ services:
       context: ./requirements/mariadb
     container_name: mariadb
     image: mariadb:42
-    restart: always
+    restart: unless-stopped
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -65,7 +65,7 @@ services:
       context: ./requirements/bonus/redis
     container_name: redis
     image: redis:42
-    restart: always
+    restart: unless-stopped
     networks:
       - inception
 
@@ -76,7 +76,7 @@ services:
       context: ./requirements/bonus/adminer
     container_name: adminer
     image: adminer:42
-    restart: always
+    restart: unless-stopped
     networks:
       - inception
 
