@@ -50,28 +50,9 @@ services:
     restart: unless-stopped
     volumes:
       - mariadb_data:/var/lib/mysql
-    networks:
-      - inception
-    secrets:
-      - db_name
-      - db_user
-      - db_password
-      - db_root_password
-
-  redis:
-    depends_on:
-      - wordpress
-    build:
-      context: ./requirements/bonus/redis
-    container_name: redis
-    image: redis:42
-    restart: unless-stopped
-    networks:
-      - inception
-
-  adminer:
-    depends_on:
+    networks: always
       - mariadb
+      - nginx
     build:
       context: ./requirements/bonus/adminer
     container_name: adminer
