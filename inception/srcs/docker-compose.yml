@@ -72,6 +72,7 @@ services:
   adminer:
     depends_on:
       - mariadb
+      - nginx
     build:
       context: ./requirements/bonus/adminer
     container_name: adminer
@@ -79,6 +80,18 @@ services:
     restart: unless-stopped
     networks:
       - inception
+
+  # website:
+  #   depends_on:
+  #     - nginx
+  #   build:
+  #     context: ./requirements/bonus/website
+  #   container_name: website
+  #   image: website:42
+  #   restart: always
+  #   networks:
+  #     - inception
+  #   env_file: .env
 
 networks:
   inception:
